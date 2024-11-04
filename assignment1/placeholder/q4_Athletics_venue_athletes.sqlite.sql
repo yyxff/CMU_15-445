@@ -30,3 +30,4 @@ where n_c_n.n_La is not null
 and n_c_n.n_Lo is not null
 and n_c_n.c_La is not null
 and n_c_n.c_Lo is not null
+;
