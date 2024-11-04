@@ -13,13 +13,16 @@ with a_m as(
 , t_a_m as (select athletes.name, count(athletes.name) as mn from medals, teams, athletes
     where medals.winner_code=teams.code
     and teams.athletes_code=athletes.code
-
+    and medals.discipline='Judo'
     group by athletes.name
     )
 
 -- union 两者，排序
-select * from a_m
-    union all
-select * from t_a_m
-
-order by mn desc, name
+, a_mn as(
+    select * from a_m
+        union all
+    select * from t_a_m
+)
+select a_mn.name,sum(mn) as newmn from a_mn
+group by name
+order by newmn desc, name
